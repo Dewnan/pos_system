@@ -1,5 +1,6 @@
 package me.dewnan.pos;
 import me.dewnan.pos.model.ProductManager;
+import me.dewnan.pos.model.CustomerManager;
 import java.util.Scanner;
 
 public class Main {
@@ -7,7 +8,7 @@ public class Main {
         System.out.println("POS System Started!");
         ProductManager pm = new ProductManager();
         Scanner scanner = new Scanner(System.in);
-
+/*
         while (true) {
             System.out.println("1. Add Product");
             System.out.println("2. List Products");
@@ -52,6 +53,14 @@ public class Main {
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
-        }
+        }*/
+
+
+        CustomerManager cm = new CustomerManager();
+        cm.addCustomer("dewnan",2003, "asd", 12345);
+        cm.addCustomer("chami",3002, "asd", 12345);
+        cm.listCustomers();
+        cm.removeCustomer(0);
+        cm.listCustomers();
     }
 }
