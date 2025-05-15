@@ -10,9 +10,9 @@ public class CustomerManager {
         customersList.add(customer);
         System.out.println("Customer: " + name + " added.");
     }
-    public void removeCustomer (int nic) {
-        customersList.remove(nic);
-        System.out.println("Customer: " + nic + " removed.");
+    public void removeCustomer (int id) {
+        customersList.remove(id);
+        System.out.println("Customer: " + id + " removed.");
     }
     public void listCustomers(){
         if (customersList.isEmpty()){
