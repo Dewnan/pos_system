@@ -11,7 +11,7 @@ public class CustomerManager {
         System.out.println("Customer: " + name + " added.");
     }
     public void removeCustomer (int id) {
-        customersList.remove(id);
+        customersList.remove(id-1);
         System.out.println("Customer: " + id + " removed.");
     }
     public void listCustomers(){

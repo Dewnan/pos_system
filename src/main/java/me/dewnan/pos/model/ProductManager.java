@@ -23,4 +23,13 @@ public class ProductManager {
     public void removeProduct(int id) {
         productsList.remove(id-1);
     }
+
+    public Product getProductById(int id){
+        for (Product product : productsList){
+            if (product.getId() == id){
+                return product;
+            }
+        }
+        return null;
+    }
 }

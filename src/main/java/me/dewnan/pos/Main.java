@@ -1,5 +1,4 @@
 package me.dewnan.pos;
-import me.dewnan.pos.Navigation;
 
 public class Main {
     public static void main(String[] args) {
