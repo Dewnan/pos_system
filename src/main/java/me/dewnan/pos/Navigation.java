@@ -8,10 +8,10 @@ public class Navigation {
     private ProductManager pm = new ProductManager();
     private CustomerManager cm = new CustomerManager();
 
-    public void showMainMenue(){
+    public void showMainMenu(){
         while (true){
             System.out.println("--------------------");
-            System.out.println("~~~ Main Menue ~~~");
+            System.out.println("~~~ Main Menu ~~~");
             System.out.println("1. Manage Inventory");
             System.out.println("2. Manage Customers");
             System.out.println("3. Exit");
