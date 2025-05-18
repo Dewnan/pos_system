@@ -10,7 +10,6 @@ public class DatabaseHandler {
     public static Connection connect(){
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
-            System.out.println("Database connection successful!");
             return conn;
         } catch (SQLException e) {
             System.out.println("Database Connection Failed!");

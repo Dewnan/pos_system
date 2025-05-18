@@ -25,10 +25,10 @@ public class Navigation {
             int choice = scanner.nextInt();
             switch (choice){
                 case 1:
-                    inventoryMenue();
+                    inventoryMenu();
                     break;
                 case 2:
-                    customerMenue();
+                    customerMenu();
                     break;
                 case 3:
                     cartMenu();
@@ -38,12 +38,12 @@ public class Navigation {
                     scanner.close();
                     return;
                 default:
-                    System.out.println("Invalid Chioce");
+                    System.out.println("Invalid Choice");
             }
         }
 
     }
-    private void inventoryMenue(){
+    private void inventoryMenu(){
         while (true){
             System.out.println("--------------------");
             System.out.println("~~~ Inventory Menue ~~~");
@@ -84,12 +84,12 @@ public class Navigation {
         }
     }
 
-    private void customerMenue(){
+    private void customerMenu(){
         while (true){
             System.out.println("--------------------");
-            System.out.println("~~~ Customer Menue ~~~");
-            System.out.println("1. Add Custermer");
-            System.out.println("2. Remove Customer");
+            System.out.println("~~~ Customer Menu ~~~");
+            System.out.println("1. Add a Customer");
+            System.out.println("2. Remove a Customer");
             System.out.println("3. List Customers");
             System.out.println("4. Back");
             System.out.println("--------------------");
@@ -116,8 +116,9 @@ public class Navigation {
                     cm.addCustomer(name, nic, address, contact);
                     break;
                 case 2:
-                    int id = scanner.nextInt();
-                    cm.removeCustomer(id);
+                    System.out.print("Enter the NIC Number: ");
+                    int removeNic = scanner.nextInt();
+                    cm.removeCustomer(removeNic);
                     break;
                 case 3:
                     cm.listCustomers();
