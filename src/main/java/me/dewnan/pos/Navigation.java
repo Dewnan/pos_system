@@ -1,5 +1,7 @@
 package me.dewnan.pos;
 import java.util.Scanner;
+
+import me.dewnan.pos.model.CartManager;
 import me.dewnan.pos.model.ProductManager;
 import me.dewnan.pos.model.CustomerManager;
 
@@ -7,6 +9,7 @@ public class Navigation {
     private Scanner scanner  = new Scanner(System.in);
     private ProductManager pm = new ProductManager();
     private CustomerManager cm = new CustomerManager();
+    private CartManager cartmanager = new CartManager();
 
     public void showMainMenu(){
         while (true){
@@ -14,7 +17,8 @@ public class Navigation {
             System.out.println("~~~ Main Menu ~~~");
             System.out.println("1. Manage Inventory");
             System.out.println("2. Manage Customers");
-            System.out.println("3. Exit");
+            System.out.println("3. Cart");
+            System.out.println("4. Exit");
             System.out.println("--------------------");
             System.out.print("Enter your choice: ");
 
@@ -27,6 +31,9 @@ public class Navigation {
                     customerMenue();
                     break;
                 case 3:
+                    cartMenu();
+                    break;
+                case 4:
                     System.out.println("Exiting...");
                     scanner.close();
                     return;
@@ -36,7 +43,6 @@ public class Navigation {
         }
 
     }
-
     private void inventoryMenue(){
         while (true){
             System.out.println("--------------------");
@@ -120,7 +126,38 @@ public class Navigation {
                     System.out.println("Going Back..");
                     return;
             }
+        }
+    }
 
+    private void cartMenu(){
+        System.out.println("Cart menu opened.");
+        while (true){
+            System.out.println("--------------------");
+            System.out.println("~~~ Manage your Cart ~~~");
+            System.out.println("1. Add Item");
+            System.out.println("2. Remove Item");
+            System.out.println("3. List Items in cart");
+            System.out.println("4. Check out (Need to develop)");
+            System.out.println("--------------------");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice){
+                case 1:
+                    System.out.print("Enter Item: ");
+                    String Item = scanner.nextLine();
+
+                    System.out.println("How many items: ");
+                    int quantity = scanner.nextInt();
+                case 2:
+                    //  Remove Item
+                case 3:
+                    //  List Items
+                case 4:
+                    //  Checkout
+            }
         }
     }
 }
