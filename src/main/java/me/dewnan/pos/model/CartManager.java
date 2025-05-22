@@ -52,11 +52,8 @@ public class CartManager {
         for (CartItem item : cartItemList){
             total += item.getTotalPrice();
         }
+        System.out.printf("Total amount: Rs. %.2f%n", total);
         return total;
-    }
-
-    public void printCartTotal() {
-        System.out.printf("Total amount: Rs. %.2f%n", getTotal());
     }
 
     public void clearCart(){

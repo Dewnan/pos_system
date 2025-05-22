@@ -58,9 +58,7 @@ public class ProductManager {
 
                 Product product = new Product(id, name, price, quantity);
                 products.add(product);
-
-                // Print for display (optional)
-                System.out.println("ID: " + id + ", Name: " + name + ", Price of a unit: " + price + ", Available Quantity: " + quantity);
+                //System.out.println("ID: " + id + ", Name: " + name + ", Price of a unit: " + price + ", Available Quantity: " + quantity);
             }
 
         } catch (Exception e) {

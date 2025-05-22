@@ -138,7 +138,8 @@ public class Navigation {
             System.out.println("1. Add Item");
             System.out.println("2. Remove Item");
             System.out.println("3. List Items in cart");
-            System.out.println("4. Check out (Need to develop)");
+            System.out.println("4. Check out");
+            System.out.println("5. Go Back");
             System.out.println("--------------------");
             System.out.print("Enter your choice: ");
 
@@ -160,8 +161,10 @@ public class Navigation {
                     System.out.print("Enter the Product ID: ");
                     int productId = scanner.nextInt();
                     cartmanager.removeFromCart(productId);
+                    break;
                 case 3:
                     cartmanager.viewCart();
+                    break;
                 case 4:
                     if (cartmanager.getCartItems().isEmpty()) {
                         System.out.println("Cart is empty. Cannot checkout.");
@@ -186,6 +189,9 @@ public class Navigation {
                     // 5. Clear the cart
                     cartmanager.clearCart();
                     break;
+                case 5:
+                    System.out.println("Going Back..");
+                    return;
             }
         }
     }
