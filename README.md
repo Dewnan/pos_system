@@ -1,2 +1,1 @@
-This is something I'm working on my free time to get in touch with Java and SQLite.
-This is has onli cli interface for now and I will make GUI, and it require some error handling and code improvements.
+This is a side project I’m doing to learn Java and SQLite. Right now, it’s just a CLI, but I’ll add a GUI later. Still needs some error handling and cleanup to do
