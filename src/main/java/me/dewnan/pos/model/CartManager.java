@@ -1,13 +1,15 @@
 package me.dewnan.pos.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartManager {
     private List<CartItem> cartItemList = new ArrayList<>();
 
+
     public void addToCart(Product product, int quantity){
         if (product.getQuantity() < quantity){
-            System.out.println("Not Enough stock!");
+            System.out.println("Not enough stock!");
             return;
         }
 
@@ -23,9 +25,14 @@ public class CartManager {
         System.out.println("Added to cart: " + item);
     }
 
+
     public void removeFromCart(int productId){
-        cartItemList.removeIf(item -> item.getProduct().getId() == productId);
-        System.out.println("Removed product with ID: " + productId);
+        boolean removed = cartItemList.removeIf(item -> item.getProduct().getId() == productId);
+        if (removed) {
+            System.out.println("Removed product with ID: " + productId);
+        } else {
+            System.out.println("Product not found in cart.");
+        }
     }
 
     public void viewCart(){
@@ -34,22 +41,27 @@ public class CartManager {
             return;
         }
 
-        System.out.println("Items in your cart: ");
+        System.out.println("Items in your cart:");
         for (CartItem item : cartItemList) {
             System.out.println(item);
         }
     }
 
     public double getTotal(){
-        double total = 1;
+        double total = 0;
         for (CartItem item : cartItemList){
             total += item.getTotalPrice();
         }
         return total;
     }
 
+    public void printCartTotal() {
+        System.out.printf("Total amount: Rs. %.2f%n", getTotal());
+    }
+
     public void clearCart(){
         cartItemList.clear();
+        System.out.println("Cart cleared.");
     }
 
     public List<CartItem> getCartItems() {

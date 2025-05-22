@@ -9,9 +9,8 @@ import java.sql.SQLException;
 
 public class CustomerManager {
 
-    String sqlQuery = "INSERT INTO customers (nic, name, address, contactNumber) VALUES (?, ?, ?, ?)";
-
     public void addCustomer(String name, int nic, String address, int contactNumber){
+        String sqlQuery = "INSERT INTO customers (nic, name, address, contactNumber) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseHandler.connect();
             PreparedStatement query = conn.prepareStatement(sqlQuery);) {
 
@@ -21,7 +20,7 @@ public class CustomerManager {
             query.setInt(4, contactNumber);
             query.executeUpdate();
 
-            System.out.println("Customer added: " + name);
+            System.out.println(name+" Added to the system.");
 
             } catch (SQLException e) {
             System.out.println(e);
@@ -60,5 +59,27 @@ public class CustomerManager {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public Customer getCustomerByNIC(int nic){
+        String sqlQuery = "SELECT * FROM customers WHERE nic = ?";
+        try (Connection conn = DatabaseHandler.connect();
+             PreparedStatement query = conn.prepareStatement(sqlQuery)) {
+
+            query.setInt(1, nic);
+            ResultSet rs = query.executeQuery();
+
+            if (rs.next()) {
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                int contact = rs.getInt("contactNumber");
+
+                return new Customer(name, nic, address, contact);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
     }
 }

@@ -1,15 +1,14 @@
 package me.dewnan.pos;
 import java.util.Scanner;
 
-import me.dewnan.pos.model.CartManager;
-import me.dewnan.pos.model.ProductManager;
-import me.dewnan.pos.model.CustomerManager;
+import me.dewnan.pos.model.*;
 
 public class Navigation {
     private Scanner scanner  = new Scanner(System.in);
     private ProductManager pm = new ProductManager();
     private CustomerManager cm = new CustomerManager();
     private CartManager cartmanager = new CartManager();
+    private OrderManager om = new OrderManager();
 
     public void showMainMenu(){
         while (true){
@@ -46,7 +45,7 @@ public class Navigation {
     private void inventoryMenu(){
         while (true){
             System.out.println("--------------------");
-            System.out.println("~~~ Inventory Menue ~~~");
+            System.out.println("~~~ Inventory Menu ~~~");
             System.out.println("1. Add Product");
             System.out.println("2. List Products");
             System.out.println("3. Remove Product");
@@ -119,6 +118,7 @@ public class Navigation {
                     System.out.print("Enter the NIC Number: ");
                     int removeNic = scanner.nextInt();
                     cm.removeCustomer(removeNic);
+                    scanner.nextLine();
                     break;
                 case 3:
                     cm.listCustomers();
@@ -150,14 +150,42 @@ public class Navigation {
                     System.out.print("Enter Item: ");
                     String Item = scanner.nextLine();
 
-                    System.out.println("How many items: ");
+                    System.out.print("How many items: ");
                     int quantity = scanner.nextInt();
+
+                    Product product = pm.getProductByName(Item);
+                    cartmanager.addToCart(product, quantity);
+                    break;
                 case 2:
-                    //  Remove Item
+                    System.out.print("Enter the Product ID: ");
+                    int productId = scanner.nextInt();
+                    cartmanager.removeFromCart(productId);
                 case 3:
-                    //  List Items
+                    cartmanager.viewCart();
                 case 4:
-                    //  Checkout
+                    if (cartmanager.getCartItems().isEmpty()) {
+                        System.out.println("Cart is empty. Cannot checkout.");
+                        break;
+                    }
+
+                    // 2. Ask for customer NIC
+                    System.out.print("Enter NIC number for the customer: ");
+                    int nic = scanner.nextInt();
+                    scanner.nextLine();
+
+                    // 3. Find the customer
+                    Customer customer = cm.getCustomerByNIC(nic);
+                    if (customer == null) {
+                        System.out.println("Customer not found. Please add the customer first.");
+                        break;
+                    }
+
+                    // 4. Place the order
+                    om.placeOrder(customer, cartmanager.getCartItems());
+
+                    // 5. Clear the cart
+                    cartmanager.clearCart();
+                    break;
             }
         }
     }
